@@ -1,0 +1,19 @@
+<div class="stickytop">
+    <button class="refreshButton" (click)="refreshButton()">Refresh</button>
+</div>
+<div class="thread" *ngFor="let thread of threads">
+    <a href="https://reddit.com/r/{{thread.subReddit}}/comments/{{thread.id}}">
+        <div class="topPart">
+            <div class="title">{{ thread.title }}</div>
+            <div class="sub">r/{{ thread.subReddit }}</div>
+        </div>
+        <div class="mainPart">
+            <ng-template [ngIf]="thread.img > ''"><div class="img"><img src="{{ thread.img | amp}}" width = "300" height = "300"/></div></ng-template>
+            <div class="post" [innerHTML]="clearHTML(thread.post)"></div>
+        </div>
+        <div class="bottomPart">
+            <div class="author">by {{ thread.author }}</div>
+            <div>&nbsp;on {{ thread.createdDate | date:'fullDate'  }}</div>
+        </div>
+    </a>
+</div>
